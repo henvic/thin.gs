@@ -1,4 +1,24 @@
-lib-cov
+node_modules
+pids
+npm-debug.log
+# build
+coverage
+# editors
+.settings
+.project
+.idea
+/nbproject
+# Mac
+.DS_Store
+.Spotlight-V100
+.Trashes
+# KDE
+.directory
+# Vim
+.*.sw[a-z]
+*.un~
+Session.vim
+
 *.seed
 *.log
 *.csv
@@ -8,7 +28,7 @@ lib-cov
 *.gz
 
 pids
-logs
-results
 
-npm-debug.log
+.tmp
+.sass-cache
+app/bower_components
