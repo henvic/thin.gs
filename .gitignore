@@ -2,6 +2,7 @@ node_modules
 pids
 npm-debug.log
 # build
+dist
 coverage
 # editors
 .settings
