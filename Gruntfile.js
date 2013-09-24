@@ -176,6 +176,14 @@ module.exports = function (grunt) {
                 }]
             }
         },
+        compass: {
+            dist: {
+                options: {
+                    sassDir: 'app/styles/sass',
+                    cssDir: 'app/styles/css',
+                }
+            }
+        },
         cssmin: {
             // By default, your `index.html` <!-- Usemin Block --> will take care of
             // minification. This option is pre-configured if you do not wish to use
@@ -319,6 +327,7 @@ module.exports = function (grunt) {
         'copy:dist',
         'cdnify',
         'ngmin',
+        'compass',
         'cssmin',
         'uglify',
         'rev',
