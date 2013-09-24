@@ -303,12 +303,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('test', [
-        'jslint',
-        'clean:server',
-        'concurrent:test',
-        'autoprefixer',
-        'connect:test',
-        'karma'
+        'jslint'
     ]);
 
     grunt.registerTask('build', [
