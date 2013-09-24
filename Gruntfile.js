@@ -327,7 +327,6 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('default', [
-        'jslint',
         'test',
         'build'
     ]);
