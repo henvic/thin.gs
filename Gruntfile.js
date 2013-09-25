@@ -34,7 +34,11 @@ module.exports = function (grunt) {
     grunt.initConfig({
         yeoman: yeomanConfig,
         watch: {
-            styles: {
+            compass: {
+                files: ['<%= yeoman.app %>/styles/{,*/}*.scss'],
+                tasks: ['compass']
+            },
+            css: {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
                 tasks: ['copy:styles', 'autoprefixer']
             },
