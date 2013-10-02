@@ -1,16 +1,27 @@
 /*global angular */
 /*jslint browser: true */
+(function () {
+    'use strict';
 
-angular.module('thin.gsApp', [])
-    .config(function ($routeProvider) {
-        'use strict';
+    var app;
 
-        $routeProvider
-            .when('/', {
-                templateUrl: 'views/main.html',
-                controller: 'MainCtrl'
-            })
-            .otherwise({
-                redirectTo: '/'
-            });
+    app = angular.module('thin.gsApp', ['ngRoute', 'ngSanitize', 'alerts', 'auth'])
+        .config(['$routeProvider', '$locationProvider',
+            function ($routeProvider, $locationProvider) {
+                $routeProvider
+                    .when('/', {
+                        templateUrl: 'views/main.html',
+                        controller: 'MainCtrl'
+                    })
+                    .otherwise({
+                        redirectTo: '/'
+                    });
+
+                $locationProvider.html5Mode(true);
+                $locationProvider.hashPrefix('!');
+            }]);
+
+    app.run(function ($rootScope, Facebook, alert) {
     });
+}());
+
