@@ -23,6 +23,7 @@
 
     app.run(function ($rootScope, userService, alert) {
         $rootScope.userService = userService;
+        $rootScope.alert = alert;
     });
 }());
 
