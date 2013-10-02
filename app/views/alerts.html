@@ -1,0 +1,8 @@
+<div class="row" ng-controller="AlertsCtrl">
+    <div class="small-12 columns">
+        <div class="alert-box" ng-repeat="alert in alerts">
+            <span ng-bind-html="alert.raw"></span>
+            <a ng-href="" class="close" ng-click="alerts.remove($index)">&times;</a>
+        </div>
+    </div>
+</div>
