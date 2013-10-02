@@ -1,5 +1,4 @@
 /*global angular */
-/*jslint browser: true */
 (function () {
     'use strict';
 
