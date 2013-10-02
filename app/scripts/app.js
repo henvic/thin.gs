@@ -22,6 +22,7 @@
             }]);
 
     app.run(function ($rootScope, Facebook, alert) {
+        $rootScope.Facebook = Facebook;
     });
 }());
 
