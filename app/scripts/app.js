@@ -21,8 +21,8 @@
                 $locationProvider.hashPrefix('!');
             }]);
 
-    app.run(function ($rootScope, Facebook, alert) {
-        $rootScope.Facebook = Facebook;
+    app.run(function ($rootScope, userService, alert) {
+        $rootScope.userService = userService;
     });
 }());
 
