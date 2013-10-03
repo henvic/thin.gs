@@ -31,7 +31,7 @@
                     $window.location.href = '/auth/facebook';
                 },
                 logout: function () {
-                    $http({ method: 'GET', url: '/logout' })
+                    $http({ method: 'POST', url: '/logout' })
                         .success(function () {
                             set(undefined);
                         })
