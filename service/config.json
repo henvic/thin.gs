@@ -1,0 +1,20 @@
+{
+    "port": 10000,
+    "reverseProxy": false,
+    "facebook": {
+        "key": "<api-key>",
+        "secret": "<api-secret>"
+    },
+    "adapter": {
+        "mongo": {
+            "host": "localhost",
+            "port": 27017,
+            "db": "things",
+            "options": {
+                "safe": true,
+                "journal": true,
+                "auto_reconnect": true
+            }
+        }
+    }
+}
