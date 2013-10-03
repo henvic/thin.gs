@@ -1,13 +1,5 @@
 /*jslint node: true */
 
-var LIVERELOAD_PORT = 35729;
-var lrSnippet = require('connect-livereload')({ port: LIVERELOAD_PORT });
-var mountFolder = function (connect, dir) {
-    'use strict';
-
-    return connect.static(require('path').resolve(dir));
-};
-
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -21,10 +13,18 @@ module.exports = function (grunt) {
     require('time-grunt')(grunt);
 
     // configurable paths
-    var yeomanConfig = {
-        app: 'app',
-        dist: 'dist',
-        test: 'test'
+    var LIVERELOAD_PORT = 35729,
+        lrSnippet = require('connect-livereload')({ port: LIVERELOAD_PORT }),
+        mountFolder,
+        yeomanConfig = {
+            app: 'app',
+            service: 'service',
+            dist: 'dist',
+            test: 'test'
+        };
+
+    mountFolder = function (connect, dir) {
+        return connect.static(require('path').resolve(dir));
     };
 
     try {
