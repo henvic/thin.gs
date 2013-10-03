@@ -5,9 +5,11 @@
 
     var app;
 
-    app = angular.module('thin.gsApp', ['ngRoute', 'ngSanitize', 'alerts', 'auth'])
-        .config(['$routeProvider', '$locationProvider',
-            function ($routeProvider, $locationProvider) {
+    app = angular.module('thin.gsApp', [
+        'ngRoute', 'ngSanitize', 'alerts', 'auth', 'angular-google-analytics', 'config'
+    ])
+        .config(['$routeProvider', '$locationProvider', 'AnalyticsProvider', 'config',
+            function ($routeProvider, $locationProvider, AnalyticsProvider, config) {
                 $routeProvider
                     .when('/', {
                         templateUrl: 'views/main.html',
@@ -19,6 +21,10 @@
 
                 $locationProvider.html5Mode(true);
                 $locationProvider.hashPrefix('!');
+
+                AnalyticsProvider.setAccount(config.googleAnalyticsId);
+                AnalyticsProvider.trackPages(true);
+                AnalyticsProvider.trackPrefix('my-application');
             }]);
 
     app.run(function ($rootScope, userService, alert) {
