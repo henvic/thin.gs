@@ -6,4 +6,6 @@ Use `npm install` to install.
 
 `grunt test` to run the tests.
 
-The dependencies are explicited in bower's bower.json and the npm's package.json files.
+MongoDB 2.4 or newer is required.
+
+Other dependencies are explicited in bower's bower.json and the npm's package.json files.
