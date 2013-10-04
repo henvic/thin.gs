@@ -28,7 +28,7 @@ module.exports = function (mongoDb, adapter) {
             console.error('Failed to load DB');
         }
 
-        adapter.get().collection('users').save(data, function (err) {
+        adapter.get().collection('users').update(data, {upsert: true}, function (err) {
             if (err) {
                 console.error(err);
             }
