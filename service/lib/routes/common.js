@@ -3,6 +3,10 @@
 module.exports = function (app, users, pub) {
     'use strict';
 
+    //list of routes that are loaded on the client-side
+    //this exists here to avoid 404 HTTP Statuses being sent
+    var appRoutes = ['/tos'];
+
     app.get('/api/me', function (req, res, next) {
         if (req.method !== 'GET') {
             res.status(405).json({error: 405, message: '405 Method Not Allowed'});
@@ -38,8 +42,10 @@ module.exports = function (app, users, pub) {
         res.status(500).json({error: 500, message: '500 Internal Server Error'});
     });
 
-    app.all('/tos', function (req, res) {
-        res.sendfile(pub + '/index.html');
+    appRoutes.forEach(function (route) {
+        app.all(route, function (req, res) {
+            res.sendfile(pub + '/index.html');
+        });
     });
 
     app.use(function (req, res, next) {
