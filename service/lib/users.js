@@ -23,12 +23,12 @@ module.exports = function (mongoDb, adapter) {
         adapter.get().collection('users').findOne({id: id}, callback);
     };
 
-    exports.save = function (data) {
+    exports.save = function (id, data) {
         if (!adapter.get()) {
             console.error('Failed to load DB');
         }
 
-        adapter.get().collection('users').update(data, {upsert: true}, function (err) {
+        adapter.get().collection('users').update({id: id}, data, {upsert: true}, function (err) {
             if (err) {
                 console.error(err);
             }
