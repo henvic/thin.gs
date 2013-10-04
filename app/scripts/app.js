@@ -28,7 +28,19 @@
                 AnalyticsProvider.setAccount(config.googleAnalyticsId);
                 AnalyticsProvider.trackPages(true);
                 AnalyticsProvider.trackPrefix('my-application');
-            }]);
+            }])
+        .filter('us2date', function () {
+            return function (input) {
+                var out,
+                    split = input.split('/');
+
+                if (split.length === 3) {
+                    out = split[2] + '-' + split[0] + '-' + split[1];
+                }
+
+                return out;
+            };
+        });
 
     app.run(function ($rootScope, userService, alert) {
         $rootScope.userService = userService;
