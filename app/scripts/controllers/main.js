@@ -1,6 +1,9 @@
 /*global angular */
 
-angular.module('thin.gsApp')
-    .controller('MainCtrl', function ($scope) {
-        'use strict';
-    });
+(function () {
+    'use strict';
+
+    angular.module('thin.gsApp')
+        .controller('MainCtrl', function ($scope) {
+        });
+}());
