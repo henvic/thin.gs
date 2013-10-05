@@ -14,41 +14,102 @@
     <!-- endbuild -->
     <base href="/" />
 </head>
-  <body ng-app="thin.gsApp">
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+<body ng-app="thin.gsApp">
+<!--[if lt IE 7]>
+<p class="browsehappy">
+    You are using an <strong>outdated</strong> browser.
+    Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+</p>
+<![endif]-->
 
-    <!--[if lt IE 9]>
-      <script src="bower_components/es5-shim/es5-shim.js"></script>
-      <script src="bower_components/json3/lib/json3.min.js"></script>
-    <![endif]-->
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.min.js"></script>
+<![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+<div class="fixed contain-to-grid">
+    <nav class="top-bar">
+        <ul class="title-area">
+            <!-- Title Area -->
+            <li class="name">
+                <h1><a href="#">Thin.gs</a></h1>
+            </li>
+            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+            <li class="toggle-topbar menu-icon"><a href="#"><span><small class="hide">Menu</small></span></a></li>
+        </ul>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        <section class="top-bar-section">
+            <!-- Left Nav Section -->
+            <ul class="left">
+                <li class="divider hide-for-small"></li>
+                <li class="has-form">
+                    <form>
+                        <div class="row collapse">
+                            <div class="small-8 columns">
+                                <input type="text">
+                            </div>
+                            <div class="small-4 columns">
+                                <a href="#" class="alert button">Search</a>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+                <li class="divider"></li>
+            </ul>
 
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
+            <!-- Right Nav Section -->
+            <ul class="right">
+                <li class="divider"></li>
+                <li class="active"><a href="#">Main Item 1</a></li>
+                <li class="divider"></li>
+                <li><a ng-href="#">Logout</a></li>
+                <li class="divider"></li>
+                <li class="has-dropdown hide show-for-small"><a href="#">Main Item 3</a>
 
-    <script src="bower_components/angular/angular.js"></script>
+                    <ul class="dropdown">
+                        <li><a href="#">Dropdown Level 1b</a></li>
+                        <li><a href="#">Dropdown Level 1c</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Dropdown Level 1d</a></li>
+                        <li><a href="#">Dropdown Level 1e</a></li>
+                        <li><a href="#">Dropdown Level 1f</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">See all &rarr;</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </nav>
+</div>
+<div class="top-bar-clearing"></div>
 
-        <!-- build:js scripts/modules.js -->
-        <script src="bower_components/angular-resource/angular-resource.js"></script>
-        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-        <!-- endbuild -->
+<!-- Add your site or application content here -->
+<div ng-view=""></div>
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <!-- endbuild -->
+<footer class="row">
+    <div class="small-12 columns">
+        <a ng-href="/tos">Termos de Serviço</a>
+    </div>
+</footer>
+
+<script src="bower_components/angular/angular.js"></script>
+
+<!-- build:js scripts/modules.js -->
+<script src="bower_components/angular-google-analytics/src/angular-google-analytics.js"></script>
+<script src="bower_components/angular-facebook/src/angular-facebook.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="config.js"></script>
+<script src="scripts/services/alerts.js"></script>
+<script src="scripts/services/auth.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/main.js"></script>
+<script src="/scripts/controllers/history.js"></script>
+<!-- endbuild -->
 </body>
 </html>
