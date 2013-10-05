@@ -18,6 +18,10 @@
                     .when('/tos', {
                         templateUrl: 'views/tos.html'
                     })
+                    .when('/history', {
+                        templateUrl: 'views/history.html',
+                        controller: 'HistoryCtrl'
+                    })
                     .otherwise({
                         templateUrl: 'views/404.html'
                     });
