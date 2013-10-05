@@ -1,0 +1,38 @@
+<div class="row" ng-controller="HistoryCtrl">
+    <div class="small-12 columns">
+        <h1>Histórico</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>Data</th>
+                <th width="300">Local</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="date" />
+                </td>
+                <td>
+                    <input type="text" />
+                </td>
+                <td>
+                    <a ng-href=""><i class="icon-ok icon-border" arial-label="adicionar"></i></a>
+                    &nbsp;
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="time in list | orderBy:'-date'">
+                <td>{{ time.date | date:'dd/MM/yyyy' }}</td>
+                <td>{{ time.place }}</td>
+                <td>
+                    <a ng-href="" ng-click="alerts.remove({{ time.id }})">
+                        <i class="icon-remove icon-border" arial-label="remover"></i>
+                    </a>
+                    &nbsp;
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
