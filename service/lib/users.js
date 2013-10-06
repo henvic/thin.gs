@@ -1,19 +1,7 @@
 /*jslint node: true */
 
-module.exports = function (mongoDb, adapter) {
+module.exports = function (adapter) {
     'use strict';
-
-    exports.getObjectID = function (id) {
-        var ObjectID = mongoDb.ObjectID,
-            objectId;
-
-        try {
-            objectId = new ObjectID(id);
-        } catch (ignore) {
-        }
-
-        return objectId;
-    };
 
     exports.get = function (id, callback) {
         if (!adapter.get()) {

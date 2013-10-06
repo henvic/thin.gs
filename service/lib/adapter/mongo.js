@@ -16,6 +16,18 @@ module.exports = function (settings, mongoDb) {
         db = mongoClient.db(settings.db);
     });
 
+    exports.getObjectID = function (id) {
+        var ObjectID = mongoDb.ObjectID,
+            objectId;
+
+        try {
+            objectId = new ObjectID(id);
+        } catch (ignore) {
+        }
+
+        return objectId;
+    };
+
     exports.get = function () {
         return db;
     };

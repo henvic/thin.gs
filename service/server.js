@@ -30,7 +30,7 @@ module.exports = function () {
 
     adapter = mongo(config.adapter.mongo, mongoDb);
 
-    users = require('./lib/users')(mongoDb, adapter);
+    users = require('./lib/users')(adapter);
 
     app = express();
 
