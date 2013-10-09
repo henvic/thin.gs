@@ -44,6 +44,9 @@
 
                 return out;
             };
+        })
+        .factory('moment', function ($window) {
+            return $window.moment;
         });
 
     app.run(function ($rootScope, userService, alert) {
