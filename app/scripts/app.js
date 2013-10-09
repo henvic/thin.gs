@@ -6,7 +6,7 @@
     var app;
 
     app = angular.module('thin.gsApp', [
-        'ngRoute', 'ngSanitize', 'alerts', 'auth', 'angular-google-analytics', 'config'
+        'ngRoute', 'ngResource', 'ngSanitize', 'alerts', 'auth', 'angular-google-analytics', 'config'
     ])
         .config(['$routeProvider', '$locationProvider', 'AnalyticsProvider', 'config',
             function ($routeProvider, $locationProvider, AnalyticsProvider, config) {
