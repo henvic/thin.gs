@@ -24,4 +24,18 @@ module.exports = function (expressValidator, moment) {
 
         return this.isIn(values);
     };
+
+    expressValidator.Validator.prototype.isBloodRh = function (allowEmpty) {
+        var values = ['-', '+'];
+
+        if (allowEmpty) {
+            values.push('');
+        }
+
+        if (!this.msg) {
+            this.msg = 'Invalid blood Rh';
+        }
+
+        return this.isIn(values);
+    };
 };
