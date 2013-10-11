@@ -77,6 +77,37 @@ module.exports = function (app, users, history, pub, util) {
         });
     });
 
+    app.post('/api/history', function (req, res, next) {
+        var errors;
+
+        if (!req.user) {
+            res.status(403).send();
+        }
+
+        req.assert('date').isDate8601();
+        req.assert('place').len(1, 60);
+
+        errors = req.validationErrors();
+
+        if (errors) {
+            res.json(400, {errors: errors});
+            return;
+        }
+
+        history.insert({
+            date: req.param('date'),
+            place: req.param('place'),
+            uid: req.user
+        }, function (err, result) {
+            if (err) {
+                next(new Error('Failed to create history register'));
+                return;
+            }
+
+            res.json(result);
+        });
+    });
+
     });
 
     app.post('/logout', function (req, res) {
