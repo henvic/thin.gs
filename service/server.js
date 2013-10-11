@@ -9,6 +9,7 @@ module.exports = function () {
         app,
         config,
         express = require('express'),
+        expressValidator = require('express-validator'),
         path = require('path'),
         pub = path.resolve('../app'),
         http = require('http'),
@@ -65,6 +66,7 @@ module.exports = function () {
     app.use(express.cookieParser('foo'))
         .use(express.session())
         .use(express.bodyParser())
+        .use(expressValidator())
         .use(express.csrf())
         .use(function (req, res, next) {
             res.cookie('XSRF-TOKEN', req.csrfToken());
