@@ -14,6 +14,7 @@ module.exports = function () {
         pub = path.resolve('../app'),
         http = require('http'),
         everyauth = require('everyauth'),
+        moment = require('moment'),
         mongoDb = require('mongodb'),
         mongo = require('./lib/adapter/mongo'),
         commonRoutes = require('./lib/routes/common'),
