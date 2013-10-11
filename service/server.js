@@ -56,12 +56,10 @@ module.exports = function () {
 
         })
         .findOrCreateUser(function (session, accessToken, accessTokenExtra, fbUserMetadata) {
-            var data = {
-                id: fbUserMetadata.id.toString(),
-                facebook: fbUserMetadata
-            };
+            var id = fbUserMetadata.id.toString(),
+                data = {facebook: fbUserMetadata};
 
-            users.save(data.id, data);
+            users.save(id, data);
 
             return fbUserMetadata;
         })
