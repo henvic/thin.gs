@@ -35,5 +35,9 @@ module.exports = function (adapter) {
         });
     };
 
+    exports.update = function (id, data, callback) {
+        getCollection().update({id: id}, {$set: data}, {}, callback);
+    };
+
     return exports;
 };
