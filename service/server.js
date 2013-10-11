@@ -8,6 +8,7 @@ module.exports = function () {
     var adapter,
         app,
         config,
+        customExpressValidators = require('./lib/custom-express-validators'),
         express = require('express'),
         expressValidator = require('express-validator'),
         path = require('path'),
@@ -29,6 +30,8 @@ module.exports = function () {
 
         config = require('./config');
     }
+
+    customExpressValidators(expressValidator, moment);
 
     adapter = mongo(config.adapter.mongo, mongoDb);
 
