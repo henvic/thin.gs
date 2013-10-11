@@ -7,8 +7,12 @@
         .config(['FacebookProvider', 'config', function (FacebookProvider, config) {
             FacebookProvider.init(config.facebook.id);
         }])
-        .factory('userService', function ($http, $window, $rootScope, alert) {
-            var set = function (user) {
+        .factory('userService', function ($http, $window, $q, $rootScope, alert) {
+            var set,
+                defer = $q.defer(),
+                end = true;
+
+            set = function (user) {
                 $rootScope.user = user;
             };
 
@@ -37,6 +41,21 @@
                         })
                         .error(function () {
                             alert.add('Error in logging out.', true);
+                        });
+                },
+                save: function (data, callback) {
+                    if (!end) {
+                        defer.resolve();
+                    }
+
+                    return $http({method: 'POST', url: '/api/me', timeout: defer.promise, data: data})
+                        .success(function (feedback) {
+                            end = true;
+                            callback(false, feedback);
+                        })
+                        .error(function () {
+                            end = true;
+                            callback(true);
                         });
                 }
             };
