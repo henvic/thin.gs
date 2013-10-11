@@ -14,7 +14,21 @@ module.exports = function (adapter) {
     };
 
     exports.save = function (id, data) {
-        getCollection().update({id: id}, data, {upsert: true}, function (err) {
+        var doc = {
+            $set: {
+                facebook: data.facebook
+            },
+            $setOnInsert: {
+                id: id,
+                notifications: "1",
+                blood: {
+                    type: '',
+                    rh: ''
+                }
+            }
+        };
+
+        getCollection().update({id: id}, doc, {upsert: true}, function (err) {
             if (err) {
                 console.error(err);
             }
