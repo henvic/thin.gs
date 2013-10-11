@@ -9,3 +9,6 @@ Use `npm install` to install.
 MongoDB 2.4 or newer is required.
 
 Other dependencies are explicited in bower's bower.json and the npm's package.json files.
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/henvic/thin.gs/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
