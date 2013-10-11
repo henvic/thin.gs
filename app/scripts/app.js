@@ -49,9 +49,10 @@
             return $window.moment;
         });
 
-    app.run(function ($rootScope, userService, alert) {
+    app.run(function ($rootScope, userService, alert, moment) {
         $rootScope.userService = userService;
         $rootScope.alert = alert;
+        moment.lang('pt_BR');
     });
 }());
 
