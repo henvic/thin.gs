@@ -1,6 +1,6 @@
 /*jslint node: true */
 
-module.exports = function (app, users, pub) {
+module.exports = function (app, users, history, pub, util) {
     'use strict';
 
     //list of routes that are loaded on the client-side

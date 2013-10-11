@@ -81,7 +81,7 @@ module.exports = function () {
         .use(everyauth.middleware())
         .use(express.static(pub));
 
-    commonRoutes(app, users, pub);
+    commonRoutes(app, users, history, pub, util);
 
     http.createServer(app).listen(config.port);
 };
