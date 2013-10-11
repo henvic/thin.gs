@@ -11,8 +11,6 @@
             );
         })
         .controller('HistoryCtrl', function ($scope, alert, listItems, moment) {
-            // /history should load only for logged in users
-            alert.add('Loading history twice, why? is that it?');
             $scope.list = listItems.query();
             $scope.itemDate = moment().format('YYYY-MM-DD');
 
