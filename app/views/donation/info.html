@@ -1,0 +1,13 @@
+<span ng-if="waitToDonate">
+    Você será notificado para doar novamente {{ waitToDonate }}.
+</span>
+<span ng-if="!waitToDonate && list.length">
+    Segundo o seu histórico de doações, você já pode doar novamente.
+</span>
+<span ng-if="!waitToDonate && !list.length">
+    Você ainda não tem doações cadastradas no seu histórico. <b>Salve vidas. Doe sangue!</b>
+</span>
+<p ng-if="age >= 60">
+    <b>Importante:</b> maiores de <b>60</b> anos possuem um intervalo mínimo de doação de <b>180</b> dias.<br />
+    Segundo o seu perfil no Facebook você tem <b>{{ age }}</b> anos. Portanto, será notificado a cada <b>180</b> dias.
+</p>
