@@ -60,10 +60,23 @@ module.exports = function (app, users, history, pub, util) {
             res.status(202).send();
         });
     });
+
+    app.get('/api/history', function (req, res, next) {
+        if (!req.user) {
+            res.status(404).send();
             return;
         }
 
-        res.json(204, req.user);
+        history.getFromUser(req.user, function (err, data) {
+            if (err) {
+                next(new Error('Failed to load history'));
+                return;
+            }
+
+            res.json(data);
+        });
+    });
+
     });
 
     app.post('/logout', function (req, res) {
