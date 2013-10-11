@@ -1,36 +1,41 @@
 <div class="row">
     <div class="small-12 columns">
-        <h1>Histórico</h1>
+        <h1>Suas doações</h1>
+        <p next-donation></p>
+        <form ng-submit="addNewItem()">
+            <label for="donation-date">Data de doação</label>
+            <input type="date" id="donation-date" ng-model="newItemDate" ng-disabled="!end" required />
+            <label for="donation-place">Local de doação</label>
+            <input type="text" id="donation-place" list="donation-centers" maxlength="60"
+                   ng-model="newItemPlace" ng-disabled="!end" required />
+            <datalist id="donation-centers">
+                <option value="{{ item.name }}" ng-repeat="item in centers">
+            </datalist>
+            <button type="submit"><i class="icon-ok" arial-label="adicionar"></i></button>
+        </form>
         <table>
             <thead>
             <tr>
-                <th>Data</th>
-                <th width="300">Local</th>
+                <th width="100">Data</th>
+                <th width="250">Local</th>
                 <th></th>
-            </tr>
-            <tr>
-                <td>
-                    <input type="date" />
-                </td>
-                <td>
-                    <input type="text" />
-                </td>
-                <td>
-                    <a ng-href=""><i class="icon-ok icon-border" arial-label="adicionar"></i></a>
-                    &nbsp;
-                </td>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="time in list | orderBy:'-date'">
-                <td>{{ time.date | date:'dd/MM/yyyy' }}</td>
-                <td>{{ time.place }}</td>
+            <tr ng-repeat="item in list | orderBy:'-date'">
+                <td>{{ item.date | date:'dd/MM/yyyy' }}</td>
+                <td>{{ item.place }}</td>
                 <td>
-                    <a ng-href="" ng-click="alerts.remove({{ time.id }})">
+                    <a ng-href="" ng-click="deleteItem(item)">
                         <i class="icon-remove icon-border" arial-label="remover"></i>
                     </a>
                     &nbsp;
                 </td>
+            </tr>
+            <tr ng-hide="list.length">
+                <td>-</td>
+                <td>nenhuma doação informada</td>
+                <td></td>
             </tr>
             </tbody>
         </table>
