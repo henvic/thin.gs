@@ -8,8 +8,8 @@ module.exports = function (app, users, pub) {
     var appRoutes = ['/tos'];
 
     app.get('/api/me', function (req, res, next) {
-        if (req.method !== 'GET') {
-            res.status(405).json({error: 405, message: '405 Method Not Allowed'});
+        if (!req.user) {
+            res.status(204).send();
             return;
         }
 
