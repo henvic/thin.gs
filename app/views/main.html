@@ -1,1 +1,56 @@
+<div class="row">
+    <div class="small-12 columns">
+        <section ng-if="!user.facebook">
+            <button class="btn" ng-click="userService.login()">
+                <i class="icon-facebook icon-border icon-large"></i> Connect with Facebook (server-side)
+            </button>
+        </section>
+        <section>
+            <div ng-if="user">
+                <img ng-src="http://graph.facebook.com/{{ user.facebook.id }}/picture" />
+                <p>Logged in as <a href="{{ user.facebook.link }}">{{ user.facebook.name }}</a></p>
+                <button class='btn btn-small' ng-click="userService.logout()">Logout</button>
+            </div>
+        </section>
+    </div>
+</div>
+<div class="row">
+    <div class="small-12 columns">
+        <div ng-if="user">
+            <p>
+                <b>Última doação</b>: 22/12/2012<br />
+                <a class="button" ng-href="/history">Registro de doações</a>
+                <button class="btn btn-small">Mapa de bancos de sangue</button>
+            </p>
+            <dl>
+                <dt>Nome</dt>
+                <dd>{{ user.facebook.name }}</dd>
+                <dt>Data de nascimento</dt>
+                <dd>{{ user.facebook.birthday | us2date | date:'dd/MM/yyyy' }}</dd>
+            </dl>
+            <fieldset>
+                <legend>Tipo sanguíneo</legend>
+                <label ng-repeat="blood in bloods">
+                    <input type="radio" name="type" value="{{ blood.value }}" ng-model="user.blood.type" ng-change="set()"> {{ blood.text }}</input>
+                </label>
+            </fieldset>
+            <fieldset>
+                <legend>Fator Rh</legend>
+                <label ng-repeat="rh in rhs">
+                    <input type="radio" name="rh" value="{{ rh.value }}" ng-model="user.blood.rh" ng-change="set()"> {{ rh.text }}</input>
+                </label>
+            </fieldset>
+            <div class="switch">
+                <input id="notifications-switch-off" name="notifications-switch" type="radio" value="0" ng-model="user.notifications" ng-change="set()">
+                <label for="notifications-switch-off">&nbsp;Notificações desligadas</label>
+
+                <input id="notifications-switch-on" name="notifications-switch" type="radio" value="1" ng-model="user.notifications" ng-change="set()">
+                <label for="notifications-switch-on">Notificações ativas&nbsp;</label>
+                <span></span>
+            </div>
+            <p>
+                Ativando as notificações você receberá convite para <a href="/tos">doar até quatro vezes por ano</a>.
+            </p>
+        </div>
+    </div>
 </div>
