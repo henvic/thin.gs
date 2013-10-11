@@ -19,6 +19,7 @@ module.exports = function () {
         moment = require('moment'),
         mongoDb = require('mongodb'),
         mongo = require('./lib/adapter/mongo'),
+        util = require('util'),
         commonRoutes = require('./lib/routes/common'),
         users;
 
