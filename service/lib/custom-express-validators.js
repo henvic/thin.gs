@@ -10,4 +10,18 @@ module.exports = function (expressValidator, moment) {
 
         return this;
     };
+
+    expressValidator.Validator.prototype.isBloodType = function (allowEmpty) {
+        var values = ['A', 'B', 'AB', 'O'];
+
+        if (allowEmpty) {
+            values.push('');
+        }
+
+        if (!this.msg) {
+            this.msg = 'Invalid blood type';
+        }
+
+        return this.isIn(values);
+    };
 };
