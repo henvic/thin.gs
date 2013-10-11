@@ -11,6 +11,7 @@ module.exports = function () {
         customExpressValidators = require('./lib/custom-express-validators'),
         express = require('express'),
         expressValidator = require('express-validator'),
+        history,
         path = require('path'),
         pub = path.resolve('../app'),
         http = require('http'),
@@ -34,6 +35,8 @@ module.exports = function () {
     customExpressValidators(expressValidator, moment);
 
     adapter = mongo(config.adapter.mongo, mongoDb);
+
+    history = require('./lib/history')(adapter);
 
     users = require('./lib/users')(adapter);
 
