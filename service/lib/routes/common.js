@@ -13,15 +13,16 @@ module.exports = function (app, users, pub) {
             return;
         }
 
-        if (req.user) {
-            users.get(req.user, function (err, data) {
-                if (err) {
-                    next(new Error('Failed to load user'));
-                    return;
-                }
+        users.get(req.user, function (err, data) {
+            if (err) {
+                next(new Error('Failed to load user'));
+                return;
+            }
 
-                res.json(data);
-            });
+            res.json(data);
+        });
+    });
+
             return;
         }
 
