@@ -23,6 +23,43 @@ module.exports = function (app, users, history, pub, util) {
         });
     });
 
+    app.post('/api/me', function (req, res, next) {
+        var errors,
+            data;
+
+        if (!req.user) {
+            res.status(404).send();
+            return;
+        }
+
+        req.assert('notifications', 'Invalid notifications value').isIn([0, 1]);
+        req.assert('blood.type').isBloodType(true);
+        req.assert('blood.rh').isBloodRh(true);
+
+        errors = req.validationErrors();
+
+        if (errors) {
+            res.json(400, {errors: errors});
+            return;
+        }
+
+        data = {
+            notifications: req.param('notifications'),
+            blood: {
+                type: req.param('blood').type,
+                rh: req.param('blood').rh
+            }
+        };
+
+        users.update(req.user, data, function (err) {
+            if (err) {
+                next(new Error('Failed to save user preferences'));
+                return;
+            }
+
+            res.status(202).send();
+        });
+    });
             return;
         }
 
