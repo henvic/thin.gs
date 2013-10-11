@@ -108,6 +108,21 @@ module.exports = function (app, users, history, pub, util) {
         });
     });
 
+    app.delete('/api/history/:id', function (req, res, next) {
+        history.get(req.params.id, function (err, data) {
+            if (data && data.uid === req.user) {
+                history.remove(req.params.id, function (err) {
+                    if (!err) {
+                        res.status(204).send();
+                        return;
+                    }
+
+                    next(new Error('Failed to delete history record'));
+                });
+            } else {
+                res.status(404);
+            }
+        });
     });
 
     app.post('/logout', function (req, res) {
