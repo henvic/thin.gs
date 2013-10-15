@@ -5,7 +5,7 @@ module.exports = function (app, users, history, pub, util) {
 
     //list of routes that are loaded on the client-side
     //this exists here to avoid 404 HTTP Statuses being sent
-    var appRoutes = ['/tos'];
+    var appRoutes = ['/tos', '/history', '/map'];
 
     app.get('/api/me', function (req, res, next) {
         if (!req.user) {
