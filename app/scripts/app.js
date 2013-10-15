@@ -16,6 +16,10 @@
                         templateUrl: 'views/main.html',
                         controller: 'MainCtrl'
                     })
+                    .when('/map', {
+                        templateUrl: 'views/map.html',
+                        controller: 'MapCtrl'
+                    })
                     .when('/tos', {
                         templateUrl: 'views/tos.html'
                     })
