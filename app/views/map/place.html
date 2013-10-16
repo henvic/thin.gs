@@ -1,0 +1,22 @@
+<span ng-if="place.link" class="uri">
+    <a href="{{ place.link }}" target="_blank"><i class="icon-external-link-sign icon-large"></i>&nbsp;</a>
+</span>
+<b class="fn org">{{ place.name }}</b>
+<br />
+<span class="adr">
+    <a href="http://maps.apple.com/?daddr={{ place.address.street }}, {{ place.address.postalCode }}"
+       title="Direções" target="_blank">
+        <i class="icon-map-marker icon-large"></i>
+    </a>
+    <span class="street-address">{{ place.address.street }}</span>
+    - <span class="neighborhood">{{ place.address.neighborhood }}</span>
+    <small> {{ getDistance(place) }}</small>
+    <br />
+    <span class="locality">{{ place.address.locality }}</span> - <span class="region">{{ place.address.region }}</span>
+    <span class="postal-code">{{ place.address.postalCode }}</span>
+</span>
+<br />
+<span class="tel">
+    <a href="tel:{{ place.phone }}"><i class="icon-phone-sign icon-large"></i> {{ place.phone }}</a>
+</span><br />
+<small ng-if="place.extra"><i class="icon-calendar icon-large"></i> {{ place.extra }}</small>
