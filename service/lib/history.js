@@ -1,4 +1,4 @@
-/*jslint node: true */
+/*jslint node: true, nomen: true */
 
 module.exports = function (adapter) {
     'use strict';
