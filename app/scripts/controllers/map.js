@@ -88,6 +88,10 @@
                 $scope.prev.setOptions($scope.options.places);
             };
 
+            $scope.setCenter = function (position) {
+                $scope.center = position;
+            };
+
             $scope.getDistance = function (item) {
                 var coords,
                     userCoords,

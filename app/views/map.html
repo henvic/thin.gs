@@ -7,12 +7,12 @@
 <gm-map gm-map-id="'centersMap'" gm-center="center" gm-zoom="zoom" gm-map-options="options.map" class="map">
     <gm-markers gm-objects="places" gm-get-lat-lng="{ lat: object.location.lat, lng: object.location.lng }"
         gm-get-marker-options="getPlaceOpts(object)"
-        gm-on-click="selectPlace(object, marker); center = mark.position; infoWindow.open(marker.getMap(), marker);">
+        gm-on-click="selectPlace(object, marker); setCenter(marker.position); infoWindow.open(marker.getMap(), marker);">
     </gm-markers>
     <gm-markers gm-objects="currentLocationMarker"
                 gm-get-lat-lng="{ lat: object.location.lat, lng: object.location.lng }"
                 gm-get-marker-options="options.currentLocation"
-                gm-on-click="centerMarker(marker)">
+                gm-on-click="setCenter(marker.position)">
     </gm-markers>
 </gm-map>
 <div gm-info-window="infoWindow" gm-on-closeclick="resetPreviousMarker();">
