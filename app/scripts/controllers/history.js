@@ -48,7 +48,6 @@
 
                         d = moment(minDate, "YYYY-MM-DD").add('days', minAfter);
 
-
                         if (d < moment()) {
                             scope.waitToDonate = false;
                             return;
