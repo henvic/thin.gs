@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="large-12 columns">
+        <h1><i class="icon-location-arrow icon-border pointer" aria-label="Localizar centros de doação próximos"
+               ng-click="findMe()"></i> Centros de doação</h1>
+    </div>
+</div>
+<gm-map gm-map-id="'centersMap'" gm-center="center" gm-zoom="zoom" gm-map-options="options.map" class="map">
+    <gm-markers gm-objects="places" gm-get-lat-lng="{ lat: object.location.lat, lng: object.location.lng }"
+        gm-get-marker-options="getPlaceOpts(object)"
+        gm-on-click="selectPlace(object, marker); center = mark.position; infoWindow.open(marker.getMap(), marker);">
+    </gm-markers>
+    <gm-markers gm-objects="currentLocationMarker"
+                gm-get-lat-lng="{ lat: object.location.lat, lng: object.location.lng }"
+                gm-get-marker-options="options.currentLocation"
+                gm-on-click="centerMarker(marker)">
+    </gm-markers>
+</gm-map>
+<div gm-info-window="infoWindow" gm-on-closeclick="resetPreviousMarker();">
+    <p place info="place"></p>
+</div>
+<br />
+<div class="row">
+    <div class="large-6 columns">
+        <form ng-submit="addNewItem()">
+            <label for="donation-date">Data da doação</label>
+            <input type="date" id="donation-date" ng-model="newItemDate" ng-disabled="!end" required />
+            <input placeholder="Local de doação" type="text" id="donation-place" list="donation-centers" maxlength="60"
+                   ng-model="newItemPlace" ng-disabled="!end" required />
+            <datalist id="donation-centers">
+                <option value="{{ item.name }}" ng-repeat="item in places | orderBy:predicate">
+            </datalist>
+            <button type="submit"><i class="icon-ok" arial-label="adicionar"></i></button>
+        </form>
+    </div>
+    <div class="large-6 columns">
+        <dl class="sub-nav" ng-if="position">
+            <dt>Filtro:</dt>
+            <dd ng-click="orderByDistance('all')" ng-class="{'active': !predicate}"><a>todos</a></dd>
+            <dd ng-click="orderByDistance('closest')" ng-class="{'active': predicate === 'distance'}">
+                <a>mais próximos</a>
+            </dd>
+        </dl>
+        <ul id="map-list-of-centers" class="no-bullet map-list-of-centers">
+            <li ng-repeat="place in places | orderBy:predicate | limitTo:limit" place id="map-place-{{ item.id }}"
+                class="center-vcard vcard"></li>
+        </ul>
+    </div>
+</div>
