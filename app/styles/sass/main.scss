@@ -5,3 +5,25 @@
 @import "../../bower_components/foundation/scss/foundation";
 
 @import "../../bower_components/animate.css/animate.css";
+
+.map-list-of-centers {
+  height: em-calc(150);
+  overflow: scroll;
+  padding-top: 0;
+}
+
+.center-vcard {
+  background: linear-gradient(to bottom, #FEFEFE em-calc(130), #F0F8FC);
+  margin: 0;
+  height: em-calc(145);
+  width: 100%;
+  overflow: hidden;
+}
+
+.map {
+  height: em-calc(360);
+}
+
+.map img {
+  max-width: none;
+}
