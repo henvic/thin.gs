@@ -35,7 +35,7 @@
             return {
                 restrict : 'A',
                 templateUrl: 'views/donation/info.html',
-                link: function (scope, elem, attrs) {
+                link: function (scope) {
                     scope.age = age;
                     scope.$watch("list", function () {
                         var last = orderBy(scope.list, '-date')[0],
