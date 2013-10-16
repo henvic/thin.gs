@@ -26,9 +26,6 @@
                 {id: '@id'}
             );
         })
-        .factory('centers', function ($resource) {
-            return $resource('/api/centers.json');
-        })
         .directive('nextDonation', function (moment, $filter, userService) {
             var orderBy = $filter('orderBy'),
                 birthday = userService.get().facebook.birthday,
