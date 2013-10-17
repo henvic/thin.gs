@@ -63,25 +63,28 @@
 
             $scope.centers = centers.query();
 
-            $scope.newItemDate = moment().format('YYYY-MM-DD');
-            $scope.end = true;
+            $scope.newItem = {
+                date: moment().format('YYYY-MM-DD'),
+                place: '',
+                finishedState: true
+            };
 
             $scope.addNewItem = function () {
-                $scope.end = false;
+                $scope.newItem.finishedState = false;
 
                 listItems.save({
-                    date: $scope.newItemDate,
-                    place: $scope.newItemPlace
+                    date: $scope.newItem.date,
+                    place: $scope.newItem.place
                 }).$promise.then(function (data) {
                     $scope.list.push(data);
-                    $scope.newItemDate = moment().format('YYYY-MM-DD');
-                    $scope.newItemPlace = '';
+                    $scope.newItem.date = moment().format('YYYY-MM-DD');
+                    $scope.newItem.place = '';
                 },
                     function () {
                         alert.add('Error adding item to the history records.');
                     }).then(
                     function () {
-                        $scope.end = true;
+                        $scope.newItem.finishedState = true;
                     }
                 );
             };

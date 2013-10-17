@@ -4,10 +4,10 @@
         <p next-donation></p>
         <form ng-submit="addNewItem()">
             <label for="donation-date">Data de doação</label>
-            <input type="date" id="donation-date" ng-model="newItemDate" ng-disabled="!end" required />
+            <input type="date" id="donation-date" ng-model="newItem.date" ng-disabled="!newItem.finishedState" required />
             <label for="donation-place">Local de doação</label>
             <input type="text" id="donation-place" list="donation-centers" maxlength="60"
-                   ng-model="newItemPlace" ng-disabled="!end" required />
+                   ng-model="newItem.place" ng-disabled="!newItem.finishedState" required />
             <datalist id="donation-centers">
                 <option value="{{ item.name }}" ng-repeat="item in centers">
             </datalist>
