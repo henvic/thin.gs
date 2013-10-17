@@ -4,7 +4,7 @@
                ng-click="findMe()"></i> Centros de doação</h1>
     </div>
 </div>
-<gm-map gm-map-id="'centersMap'" gm-center="center" gm-zoom="zoom" gm-map-options="options.map" class="map">
+<gm-map gm-map-id="'centersMap'" gm-center="center" gm-zoom="mapSettings.zoom" gm-map-options="options.map" class="map">
     <gm-markers gm-objects="places" gm-get-lat-lng="{ lat: object.location.lat, lng: object.location.lng }"
         gm-get-marker-options="getPlaceOpts(object)"
         gm-on-click="selectPlace(object, marker); setCenter(marker.position); infoWindow.open(marker.getMap(), marker);">
@@ -23,9 +23,9 @@
     <div class="large-6 columns">
         <form ng-submit="addNewItem()">
             <label for="donation-date">Data da doação</label>
-            <input type="date" id="donation-date" ng-model="newItemDate" ng-disabled="!end" required />
+            <input type="date" id="donation-date" ng-model="newItem.date" ng-disabled="!newItem.finishedState" required />
             <input placeholder="Local de doação" type="text" id="donation-place" list="donation-centers" maxlength="60"
-                   ng-model="newItemPlace" ng-disabled="!end" required />
+                   ng-model="newItem.place" ng-disabled="!newItem.finishedState" required />
             <datalist id="donation-centers">
                 <option value="{{ item.name }}" ng-repeat="item in places | orderBy:predicate">
             </datalist>

@@ -14,6 +14,12 @@
             var brazilCoordinates = {lat: -10.6500, long: -52.9500},
                 google = $window.google;
 
+            $scope.mapSettings = {
+                zoom: 3
+            };
+
+            $scope.newItem = {};
+
             $scope.limit = 100000;
 
             $scope.end = true;
@@ -21,7 +27,7 @@
             $scope.options = {
                 map: {
                     center: new google.maps.LatLng(brazilCoordinates.lat, brazilCoordinates.long),
-                    zoom: 3,
+                    zoom: $scope.mapSettings.zoom,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 },
                 places: {
@@ -81,7 +87,7 @@
 
                 $scope.place = place;
 
-                $scope.newItemPlace = marker.title;
+                $scope.newItem.place = marker.title;
             };
 
             $scope.resetPreviousMarker = function () {
@@ -136,7 +142,7 @@
 
                     $scope.position = position;
                     $scope.center = new google.maps.LatLng(latitude, longitude);
-                    $scope.zoom = 12;
+                    $scope.mapSettings.zoom = 12;
 
                     $timeout(function () {
                         $scope.orderByDistance('closest');
