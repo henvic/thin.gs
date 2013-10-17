@@ -12,7 +12,7 @@
             <datalist id="donation-centers">
                 <option value="{{ item.name }}" ng-repeat="item in centers">
             </datalist>
-            <button type="submit"><i class="icon-ok" arial-label="adicionar"></i></button>
+            <button type="submit" ng-disabled="donate.$invalid"><i class="icon-ok" arial-label="adicionar"></i></button>
         </form>
         <table>
             <thead>
