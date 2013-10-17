@@ -2,11 +2,12 @@
     <div class="small-12 columns">
         <h1>Suas doações</h1>
         <p next-donation></p>
-        <form ng-submit="addNewItem()">
+        <form ng-submit="addNewItem()" name="donate">
             <label for="donation-date">Data de doação</label>
-            <input type="date" id="donation-date" ng-model="newItem.date" ng-disabled="!newItem.finishedState" required />
+            <input type="date" id="donation-date"
+                   ng-model="newItem.date" ng-disabled="!newItem.finishedState" required />
             <label for="donation-place">Local de doação</label>
-            <input type="text" id="donation-place" list="donation-centers" maxlength="60"
+            <input type="text" id="donation-place" list="donation-centers" ng-minlength="1" ng-maxlength="60"
                    ng-model="newItem.place" ng-disabled="!newItem.finishedState" required />
             <datalist id="donation-centers">
                 <option value="{{ item.name }}" ng-repeat="item in centers">
