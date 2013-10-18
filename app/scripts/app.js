@@ -6,7 +6,7 @@
     var app;
 
     app = angular.module('thin.gsApp',
-            ['ngRoute', 'ngResource', 'ngSanitize', 'pascalprecht.translate',
+            ['ngRoute', 'ngResource', 'ngSanitize', 'ngTouch', 'pascalprecht.translate',
                 'AngularGM', 'alerts', 'auth', 'centers', 'angular-google-analytics', 'config', 'angularMoment']
         )
         .config(['$routeProvider', '$locationProvider', 'AnalyticsProvider', '$translateProvider', 'config',
