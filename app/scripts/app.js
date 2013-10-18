@@ -6,11 +6,11 @@
     var app;
 
     app = angular.module('thin.gsApp',
-            ['ngRoute', 'ngResource', 'ngSanitize',
+            ['ngRoute', 'ngResource', 'ngSanitize', 'pascalprecht.translate',
                 'AngularGM', 'alerts', 'auth', 'centers', 'angular-google-analytics', 'config', 'angularMoment']
         )
-        .config(['$routeProvider', '$locationProvider', 'AnalyticsProvider', 'config',
-            function ($routeProvider, $locationProvider, AnalyticsProvider, config) {
+        .config(['$routeProvider', '$locationProvider', 'AnalyticsProvider', '$translateProvider', 'config',
+            function ($routeProvider, $locationProvider, AnalyticsProvider, $translateProvider, config) {
                 $routeProvider
                     .when('/', {
                         templateUrl: 'views/main.html',
@@ -33,6 +33,14 @@
 
                 $locationProvider.html5Mode(true);
                 $locationProvider.hashPrefix('!');
+
+                $translateProvider.addInterpolation('$translateMessageFormatInterpolation');
+                $translateProvider.preferredLanguage('pt');
+
+                $translateProvider.useStaticFilesLoader({
+                    prefix: '/languages/',
+                    suffix: '.json'
+                });
 
                 AnalyticsProvider.setAccount(config.googleAnalyticsId);
                 AnalyticsProvider.trackPages(true);
