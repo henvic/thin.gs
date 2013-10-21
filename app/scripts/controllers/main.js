@@ -4,7 +4,7 @@
     'use strict';
 
     angular.module('thin.gsApp')
-        .controller('MainCtrl', function ($scope, userService, alert) {
+        .controller('MainCtrl', ['$scope', 'userService', 'alert', function ($scope, userService, alert) {
             $scope.bloods = [
                 {value: 'A', text: 'A'},
                 {value: 'B', text: 'B'},
@@ -31,5 +31,5 @@
                     }
                 });
             };
-        });
+        }]);
 }());
