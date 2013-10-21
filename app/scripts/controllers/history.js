@@ -20,13 +20,13 @@
     };
 
     angular.module('thin.gsApp')
-        .factory('listItems', function ($resource) {
+        .factory('listItems', ['$resource', function ($resource) {
             return $resource(
                 '/api/history/:id',
                 {id: '@id'}
             );
-        })
-        .directive('nextDonation', function (moment, $filter, userService) {
+        }])
+        .directive('nextDonation', ['moment', '$filter', 'userService', function (moment, $filter, userService) {
             var orderBy = $filter('orderBy'),
                 birthday = userService.get().facebook.birthday,
                 age = calculateAge(birthday),
@@ -57,47 +57,48 @@
                     }, true);
                 }
             };
-        })
-        .controller('HistoryCtrl', function ($scope, alert, listItems, centers, moment) {
-            $scope.list = listItems.query();
+        }])
+        .controller('HistoryCtrl', ['$scope', 'alert', 'listItems', 'centers', 'moment',
+            function ($scope, alert, listItems, centers, moment) {
+                $scope.list = listItems.query();
 
-            $scope.centers = centers.query();
+                $scope.centers = centers.query();
 
-            $scope.newItem = {
-                date: moment().format('YYYY-MM-DD'),
-                place: '',
-                finishedState: true
-            };
+                $scope.newItem = {
+                    date: moment().format('YYYY-MM-DD'),
+                    place: '',
+                    finishedState: true
+                };
 
-            $scope.addNewItem = function () {
-                $scope.newItem.finishedState = false;
+                $scope.addNewItem = function () {
+                    $scope.newItem.finishedState = false;
 
-                listItems.save({
-                    date: $scope.newItem.date,
-                    place: $scope.newItem.place
-                }).$promise.then(function (data) {
-                    $scope.list.push(data);
-                    $scope.newItem.date = moment().format('YYYY-MM-DD');
-                    $scope.newItem.place = '';
-                },
-                    function () {
-                        alert.add('Error adding item to the history records.');
-                    }).then(
-                    function () {
-                        $scope.newItem.finishedState = true;
-                    }
-                );
-            };
-
-            $scope.deleteItem = function (item) {
-                item.$remove().then(
-                    function () {
-                        $scope.list.splice($scope.list.indexOf(item), 1);
+                    listItems.save({
+                        date: $scope.newItem.date,
+                        place: $scope.newItem.place
+                    }).$promise.then(function (data) {
+                        $scope.list.push(data);
+                        $scope.newItem.date = moment().format('YYYY-MM-DD');
+                        $scope.newItem.place = '';
                     },
-                    function () {
-                        alert.add('Error removing item from the history records.');
-                    }
-                );
-            };
-        });
+                        function () {
+                            alert.add('Error adding item to the history records.');
+                        }).then(
+                        function () {
+                            $scope.newItem.finishedState = true;
+                        }
+                    );
+                };
+
+                $scope.deleteItem = function (item) {
+                    item.$remove().then(
+                        function () {
+                            $scope.list.splice($scope.list.indexOf(item), 1);
+                        },
+                        function () {
+                            alert.add('Error removing item from the history records.');
+                        }
+                    );
+                };
+            }]);
 }());
