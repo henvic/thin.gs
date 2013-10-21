@@ -5,7 +5,7 @@
     'use strict';
 
     angular.module('alerts', [])
-        .factory('alert', function ($rootScope, $timeout) {
+        .factory('alert', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
             return {
                 add: function (msg) {
                     $timeout(function () {
@@ -13,8 +13,8 @@
                     }, 300);
                 }
             };
-        })
-        .controller('AlertsCtrl', function ($sanitize, $scope, $rootScope) {
+        }])
+        .controller('AlertsCtrl', ['$sanitize', '$scope', '$rootScope', function ($sanitize, $scope, $rootScope) {
             $scope.alerts = [
             ];
 
@@ -29,5 +29,5 @@
             $rootScope.$on('alertNewMessage', function (e, msg) {
                 $scope.alerts.add(msg);
             });
-        });
+        }]);
 }());
