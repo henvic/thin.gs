@@ -32,6 +32,6 @@ pids
 
 .tmp
 .sass-cache
-app/bower_components
+www/bower_components
 
 service/config.dist.json

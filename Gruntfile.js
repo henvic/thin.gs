@@ -17,7 +17,7 @@ module.exports = function (grunt) {
         lrSnippet = require('connect-livereload')({ port: LIVERELOAD_PORT }),
         mountFolder,
         yeomanConfig = {
-            app: 'app',
+            www: 'www',
             service: 'service',
             dist: 'dist',
             test: 'test'
@@ -28,18 +28,18 @@ module.exports = function (grunt) {
     };
 
     try {
-        yeomanConfig.app = require('./bower.json').appPath || yeomanConfig.app;
+        yeomanConfig.www = require('./bower.json').appPath || yeomanConfig.www;
     } catch (ignore) {}
 
     grunt.initConfig({
         yeoman: yeomanConfig,
         watch: {
             compass: {
-                files: ['<%= yeoman.app %>/styles/{,*/}*.scss'],
+                files: ['<%= yeoman.www %>/styles/{,*/}*.scss'],
                 tasks: ['compass']
             },
             css: {
-                files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
+                files: ['<%= yeoman.www %>/styles/{,*/}*.css'],
                 tasks: ['copy:styles', 'autoprefixer']
             },
             livereload: {
@@ -47,10 +47,10 @@ module.exports = function (grunt) {
                     livereload: LIVERELOAD_PORT
                 },
                 files: [
-                    '<%= yeoman.app %>/{,*/}*.html',
+                    '<%= yeoman.www %>/{,*/}*.html',
                     '.tmp/styles/{,*/}*.css',
-                    '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
-                    '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+                    '{.tmp,<%= yeoman.www %>}/scripts/{,*/}*.js',
+                    '<%= yeoman.www %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
             }
         },
@@ -77,7 +77,7 @@ module.exports = function (grunt) {
                         return [
                             lrSnippet,
                             mountFolder(connect, '.tmp'),
-                            mountFolder(connect, yeomanConfig.app)
+                            mountFolder(connect, yeomanConfig.www)
                         ];
                     }
                 }
@@ -123,7 +123,7 @@ module.exports = function (grunt) {
         jslint: {
             all: {
                 src: ['Gruntfile.js',
-                    '<%= yeoman.app %>/scripts/{,*/}*.js',
+                    '<%= yeoman.www %>/scripts/{,*/}*.js',
                     '<%= yeoman.service %>/{,*/}*.js',
                     '<%= yeoman.test %>/{,*/}*.js'],
                 options: {
@@ -150,7 +150,7 @@ module.exports = function (grunt) {
             }
         },
         useminPrepare: {
-            html: '<%= yeoman.app %>/index.html',
+            html: '<%= yeoman.www %>/index.html',
             options: {
                 dest: '<%= yeoman.dist %>'
             }
@@ -166,7 +166,7 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= yeoman.app %>/images',
+                    cwd: '<%= yeoman.www %>/images',
                     src: '{,*/}*.{png,jpg,jpeg}',
                     dest: '<%= yeoman.dist %>/images'
                 }]
@@ -176,7 +176,7 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= yeoman.app %>/images',
+                    cwd: '<%= yeoman.www %>/images',
                     src: '{,*/}*.svg',
                     dest: '<%= yeoman.dist %>/images'
                 }]
@@ -185,8 +185,8 @@ module.exports = function (grunt) {
         compass: {
             dist: {
                 options: {
-                    sassDir: 'app/styles/sass',
-                    cssDir: 'app/styles/css'
+                    sassDir: 'www/styles/sass',
+                    cssDir: 'www/styles/css'
                 }
             }
         },
@@ -198,7 +198,7 @@ module.exports = function (grunt) {
             //   files: {
             //     '<%= yeoman.dist %>/styles/main.css': [
             //       '.tmp/styles/{,*/}*.css',
-            //       '<%= yeoman.app %>/styles/{,*/}*.css'
+            //       '<%= yeoman.www %>/styles/{,*/}*.css'
             //     ]
             //   }
             // }
@@ -218,7 +218,7 @@ module.exports = function (grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: '<%= yeoman.app %>',
+                    cwd: '<%= yeoman.www %>',
                     src: ['*.html', 'views/*.html'],
                     dest: '<%= yeoman.dist %>'
                 }]
@@ -230,7 +230,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     dot: true,
-                    cwd: '<%= yeoman.app %>',
+                    cwd: '<%= yeoman.www %>',
                     dest: '<%= yeoman.dist %>',
                     src: [
                         '*.{ico,png,txt}',
@@ -250,7 +250,7 @@ module.exports = function (grunt) {
             },
             styles: {
                 expand: true,
-                cwd: '<%= yeoman.app %>/styles',
+                cwd: '<%= yeoman.www %>/styles',
                 dest: '.tmp/styles/',
                 src: '{,*/}*.css'
             }

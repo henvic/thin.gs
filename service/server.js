@@ -13,7 +13,7 @@ module.exports = function () {
         expressValidator = require('express-validator'),
         history,
         path = require('path'),
-        pub = path.resolve('../app'),
+        pub = path.resolve('../www'),
         http = require('http'),
         everyauth = require('everyauth'),
         moment = require('moment'),

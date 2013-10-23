@@ -15,10 +15,10 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'app/bower_components/angular/angular.js',
-            'app/bower_components/angular-mocks/angular-mocks.js',
-            'app/scripts/*.js',
-            'app/scripts/**/*.js',
+            'www/bower_components/angular/angular.js',
+            'www/bower_components/angular-mocks/angular-mocks.js',
+            'www/scripts/*.js',
+            'www/scripts/**/*.js',
             'test/mock/**/*.js',
             'test/spec/**/*.js'
         ],
@@ -60,7 +60,7 @@ module.exports = function (config) {
             // source files, that you wanna generate coverage for
             // do not include tests or libraries
             // (these files will be instrumented by Istanbul)
-            'app/scripts/*.js': ['coverage']
+            'www/scripts/*.js': ['coverage']
         },
 
         // optionally, configure the reporter
